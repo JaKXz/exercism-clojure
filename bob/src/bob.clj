@@ -1,28 +1,23 @@
-(ns bob)
+(ns bob
+  (:require [clojure.string :as str]))
 
 (defn is-shouting [input]
   (and
-    (= (clojure.string/upper-case input) input)
-    (not= (clojure.string/lower-case input) input)
+    (= (str/upper-case input) input)
+    (not= (str/lower-case input) input)
   )
 )
 
 (defn is-question [input]
-  (and
-    (> (count input) 1)
-    (= (subs (clojure.string/reverse input) 0 1) "?")
-  )
-)
-
-(defn is-silence [input]
-  (= (clojure.string/trim input) "")
+  (= (subs (str/reverse input) 0 1) "?")
 )
 
 (defn response-for [input]
+  (def new-input (str/trim input))
   (cond
-    (is-shouting input) "Whoa, chill out!"
-    (is-question input) "Sure."
-    (is-silence input) "Fine. Be that way!"
+    (= "" new-input) "Fine. Be that way!"
+    (is-shouting new-input) "Whoa, chill out!"
+    (is-question new-input) "Sure."
     :else "Whatever."
   )
 )

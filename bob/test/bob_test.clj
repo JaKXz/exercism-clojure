@@ -6,8 +6,7 @@
   (is (= "Whatever." (bob/response-for "Tom-ay-to, tom-aaaah-to."))))
 
 (deftest responds-to-shouts
-  (is (= "Whoa, chill out!" (bob/response-for "WATCH OUT!")))
-)
+  (is (= "Whoa, chill out!" (bob/response-for "WATCH OUT!"))))
 
 (deftest responds-to-questions
   (is (= "Sure."
