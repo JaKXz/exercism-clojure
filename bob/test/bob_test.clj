@@ -47,3 +47,6 @@
 
 (deftest responds-to-number-question
   (is (= "Sure." (bob/response-for "4?"))))
+
+(deftest responds-to-spaced-question
+  (is (= "Sure." (bob/response-for "Ready? "))))

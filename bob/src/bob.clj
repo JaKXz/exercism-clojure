@@ -1,5 +1,11 @@
 (ns bob
-  (:require [clojure.string :refer [upper-case, lower-case, blank?]]))
+  (:require [clojure.string :refer [
+    blank?,
+    ends-with?,
+    lower-case,
+    trim,
+    upper-case
+  ]]))
 
 (defn is-shouting [input]
   (and
@@ -12,7 +18,7 @@
   (cond
     (blank? input) "Fine. Be that way!"
     (is-shouting input) "Whoa, chill out!"
-    (.endsWith input "?") "Sure."
+    (ends-with? (trim input) "?") "Sure."
     :else "Whatever."
   )
 )
