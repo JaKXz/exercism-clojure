@@ -1,15 +1,10 @@
-(ns rna-transcription
-  (:require [clojure.string :refer [join, split]]))
+(ns rna-transcription)
 
-(def translation {
-  "C" "G",
-  "G" "C",
-  "A" "U",
-  "T" "A"
-})
+(def translation {\C \G, \G \C, \A \U, \T \A})
 
 (defn to-rna [input]
-  (def dna-chars (split input #""))
-  (assert (every? translation dna-chars) "Invalid DNA strand.")
-  (join "" (map translation dna-chars))
+  (def translated (apply str (map translation input)))
+  (if (= (count translated) (count input))
+    translated
+    (throw (AssertionError. "Invalid DNA input.")))
 )
